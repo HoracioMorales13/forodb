@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ApiRestService } from '../api-rest.service';
 
 @Component({
   selector: 'app-home',
@@ -13,4 +14,18 @@ export class HomeComponent {
     {id: 2, pregunta:'¿Cuál es la capital de México?'},
   ]
   
+  constructor(private api: ApiRestService){}
+
+  ngOnInit():void{
+    this.consulta()
+  }
+
+  consulta(){
+    this.api.getAllpreguntas().subscribe({
+      next: datos => {
+        console.log(datos)
+      },
+      error: e => {}
+    })
+  }
 }
