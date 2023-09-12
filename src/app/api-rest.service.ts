@@ -19,11 +19,25 @@ export class ApiRestService {
   }
   
   getAllpreguntas(){
-    return this.http.get(this.url + "preguntas")
+    return this.http.get<any>(this.url + "preguntas")
   }
 
   createPregunta(categoria:string, correo:string, pregunta:string, fecha:string){
-
+    const newDoc = {"fields": {
+      "correo":{
+        "stringValue": correo
+      },
+      "categoria":{
+        "stringValue": categoria
+      },
+      "pregunta":{
+        "stringValue": pregunta
+      },
+      "fecha":{
+        "timestampValue": fecha
+      }
+    }
+  }
     return this.http.post(this.url + "preguntas", {})
   }
 
