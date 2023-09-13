@@ -58,6 +58,4 @@ export class HomeComponent {
       error: e => { console.log(e) }
     })
   }
-
-  
 }
