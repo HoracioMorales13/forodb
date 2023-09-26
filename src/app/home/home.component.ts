@@ -11,6 +11,7 @@ export class HomeComponent {
     { no: 1, pregunta: '¿Cuál', categoria: "", correo: "", fecha: "", id: "" },
   ]
   newP = { categoria: "", pregunta: "" }
+  modP = { categoria: "", pregunta: "" , id:""}
 
   constructor(private api: ApiRestService) { }
 
@@ -57,5 +58,15 @@ export class HomeComponent {
       next: resp => { this.consulta() },
       error: e => { console.log(e) }
     })
+  }
+
+  modificarPregunta(){
+    this.api.updatePregunta(this.modP.pregunta, this.modP.id).subscribe({
+      next: resp => { this.consulta() },
+      error: e => { console.log(e) }
+    })
+  }
+  editarPregunta(p:any){
+    this.modP = JSON.parse(JSON.stringify(p))
   }
 }
